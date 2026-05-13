@@ -1,9 +1,9 @@
 // frontend/src/components/StaffTable.js
 import { useContext, useState } from 'react';
-import  InventoryProvider  from '../context/InventoryContext';
+import InventoryContext from '../context/useInventory';
 
 const StaffTable = ({ onEdit }) => {
-  const { staffDevices, deleteStaffDevice } = useContext(InventoryProvider);
+  const { staffDevices, deleteStaffDevice } = useContext(InventoryContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 

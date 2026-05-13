@@ -1,9 +1,9 @@
 // frontend/src/components/LabForm.js
 import { useContext, useState } from 'react';
-import  InventoryProvider  from '../context/InventoryContext';
+import InventoryContext from '../context/useInventory';
 
 const LabForm = ({ editingItem, onCancelEdit }) => {
-  const { addLabDevice, updateLabDevice } = useContext(InventoryProvider);
+  const { addLabDevice, updateLabDevice } = useContext(InventoryContext);
   const [formData, setFormData] = useState({
     labName: editingItem?.labName || '',
     numberOfSystems: editingItem?.numberOfSystems || 0,

@@ -1,9 +1,9 @@
 // frontend/src/components/LabTable.js
 import  { useContext, useState } from 'react';
-import  InventoryProvider  from '../context/InventoryContext';
+import InventoryContext from '../context/useInventory';
 
 const LabTable = ({ onEdit }) => {
-  const { labDevices, deleteLabDevice } = useContext(InventoryProvider);
+  const { labDevices, deleteLabDevice } = useContext(InventoryContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 

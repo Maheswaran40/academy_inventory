@@ -13,7 +13,8 @@ function InventoryProvider({ children }) {
   // Fetch staff devices
   const fetchStaffDevices = async () => {
     try {
-      const response = await axios.get(`${API_URL}/staff`);
+      const response = await axios.get(`http://localhost:5000/api/staff`);
+      console.log("response",response)
       setStaffDevices(response.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Error fetching staff devices');

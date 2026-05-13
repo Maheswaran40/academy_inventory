@@ -1,9 +1,9 @@
 // frontend/src/components/StaffForm.js
 import { useContext, useState } from 'react';
-import  InventoryProvider  from '../context/InventoryContext';
+import InventoryContext from '../context/useInventory';
 
 const StaffForm = ({ editingItem, onCancelEdit }) => {
-  const { addStaffDevice, updateStaffDevice } = useContext(InventoryProvider);
+  const { addStaffDevice, updateStaffDevice } = useContext(InventoryContext);
   const [formData, setFormData] = useState({
     staffName: editingItem?.staffName || '',
     departmentRole: editingItem?.departmentRole || '',

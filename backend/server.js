@@ -6,6 +6,7 @@ const cors = require('cors');
 
 const staffRoutes = require('./routes/staffRoutes');
 const labRoutes = require('./routes/labRoutes');
+const checkRecordRoutes = require('./routes/checkRecordRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -19,14 +20,15 @@ app.use(express.json());
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true
 // })
-mongoose.connect("mongodb://127.0.0.1:27017/academy_inventory")
-// mongoose.connect("mongodb+srv://eswermahes:ilife4074@cluster0.zlwh4.mongodb.net/inventory")
+// mongoose.connect("mongodb://127.0.0.1:27017/academy_inventory")
+mongoose.connect("mongodb+srv://eswermahes:ilife4074@cluster0.zlwh4.mongodb.net/inventory")
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
 // Routes 
 app.use('/api/staff', staffRoutes);
 app.use('/api/lab', labRoutes);
+app.use('/api/checkrecords', checkRecordRoutes)
 
 // Root route
 app.get('/', (req, res) => {

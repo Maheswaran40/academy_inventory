@@ -25,6 +25,13 @@ const Navbar = ({ setCurrentPage, currentPage }) => {
         >
           🏫 Lab Devices
         </a>
+        <a 
+          href="#" 
+          onClick={(e) => { e.preventDefault(); setCurrentPage('record'); }}
+          style={{ fontWeight: currentPage === 'record' ? 'bold' : 'normal' }}
+        >
+          🏫 record
+        </a>
       </div>
     </nav>
   );

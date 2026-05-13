@@ -1,12 +1,13 @@
 // frontend/src/components/Dashboard.js
-// import { useContext } from "react";
-import InventoryProvider from "../context/InventoryContext";
+import { useContext } from "react";
+import InventoryContext from '../context/useInventory';
 
 const Dashboard = () => {
-  const { staffDevices, labDevices } = InventoryProvider;
+  const { staffDevices, labDevices } = useContext(InventoryContext);
 
+  console.log("staffDevices",staffDevices)
   // Calculate totals
-  const totalStaff = staffDevices;
+  const totalStaff = staffDevices.length;
   
   const totalLabs = labDevices.length;
 
