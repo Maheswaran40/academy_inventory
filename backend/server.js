@@ -7,7 +7,7 @@ const cors = require('cors');
 const staffRoutes = require('./routes/staffRoutes');
 const labRoutes = require('./routes/labRoutes');
 const checkRecordRoutes = require('./routes/checkRecordRoutes');
-
+const missingReportRoutes=require("./routes/missingReportRoutes")
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -29,6 +29,7 @@ mongoose.connect("mongodb+srv://eswermahes:ilife4074@cluster0.zlwh4.mongodb.net/
 app.use('/api/staff', staffRoutes);
 app.use('/api/lab', labRoutes);
 app.use('/api/checkrecords', checkRecordRoutes)
+app.use("/api/missing",missingReportRoutes)
 
 // Root route
 app.get('/', (req, res) => {
