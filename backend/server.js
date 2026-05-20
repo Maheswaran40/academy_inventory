@@ -21,7 +21,7 @@ app.use(express.json());
 //   useUnifiedTopology: true
 // })
 // mongoose.connect("mongodb://127.0.0.1:27017/academy_inventory")
-mongoose.connect("mongodb+srv://eswermahes:ilife4074@cluster0.zlwh4.mongodb.net/inventory")
+mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log("MongoDB connection error:", err));
 

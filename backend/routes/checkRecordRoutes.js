@@ -4,10 +4,12 @@ const {
   createCheckRecord,
   getAllCheckRecords,
   getCheckRecordsByDate,
-  deleteCheckRecord
+  deleteCheckRecord,
+  exportCheckRecordsExcel
 } = require('../controllers/checkRecordController');
 
 // Routes
+router.get('/export-excel', exportCheckRecordsExcel);
 router.post('/', createCheckRecord);
 router.get('/', getAllCheckRecords);
 router.get('/:date', getCheckRecordsByDate);

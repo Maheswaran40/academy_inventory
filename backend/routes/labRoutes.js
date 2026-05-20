@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const labController = require('../controllers/labController');
 
-// Routes for lab devices
+// Routes for lab 
+router.get('/export-excel', labController.exportLabExcel);
 router.get('/', labController.getAllLabs);
 router.get('/:id', labController.getLabById);
 router.post('/', labController.createLab);

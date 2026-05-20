@@ -30,14 +30,14 @@ const Navbar = ({ setCurrentPage, currentPage }) => {
           onClick={(e) => { e.preventDefault(); setCurrentPage('record'); }}
           style={{ fontWeight: currentPage === 'record' ? 'bold' : 'normal' }}
         >
-          🏫 record 
+          💾 record 
         </a>
          <a 
           href="#" 
           onClick={(e) => { e.preventDefault(); setCurrentPage('missing'); }}
           style={{ fontWeight: currentPage === 'missing' ? 'bold' : 'normal' }}
         >
-         missing list
+        📝 missing list
         </a>
       </div>
     </nav>

@@ -19,7 +19,6 @@ export const MissingReportProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  console.log("missingItems",missingItems)
   const loadMissingItems = async () => {
     setLoading(true);
     try {

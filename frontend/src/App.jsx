@@ -9,7 +9,6 @@ import StaffPage from './pages/StaffPage';
 import MissingReportPage from './pages/MissingReportPage';
 import LabPage from './pages/LabPage';
 import CheckRecordsPage from './pages/CheckRecordsPage';
-
 function App() {
   const [currentPage, setCurrentPage] = React.useState('dashboard');
 

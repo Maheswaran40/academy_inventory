@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useCheckRecord } from "../context/CheckRecordContext";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = import.meta.env.VITE_API_URL;
 
 const CheckRecordsPage = () => {
   const {
@@ -20,8 +20,6 @@ const CheckRecordsPage = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [checkedBy, setCheckedBy] = useState("");
   const [saving, setSaving] = useState(false);
-
-  console.log("staffDevices", staffDevices);
 
   // Fetch existing devices
   useEffect(() => {
@@ -153,29 +151,35 @@ const CheckRecordsPage = () => {
     })),
     ...labDevices.map((d) => ({ ...d, type: "lab", typeLabel: "Lab Device" })),
   ];
-
+  const downloadCheckExcel = () => {
+    window.open(import.meta.env.VITE_EXCEL_RECORD_API);
+  };
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Weekly Device Check</h1>
-
+      
       {/* Check Form Section */}
       <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-        <h2 className="text-2xl font-semibold mb-4">New Weekly Check</h2>
-
+        {/* <h2 className="text-2xl font-semibold mb-4">New Weekly Check</h2> */}
+        <br />
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Checked By:
           </label>
-          <input
-            type="text"
-            value={checkedBy}
-            onChange={(e) => setCheckedBy(e.target.value)}
-            className="shadow appearance-none border rounded w-full md:w-1/3 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter your name"
-            required
-          />
+          <form className="input-group w-50 bg-red-100">
+            <input
+              type="text"
+              value={checkedBy}
+              onChange={(e) => setCheckedBy(e.target.value)}
+              placeholder="Enter your name"
+              required
+              className="rounded-full"
+              style={{ width: "200px", height: "30px" }}
+            />
+          </form>
         </div>
-
+        <br />
+        
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
@@ -283,13 +287,15 @@ const CheckRecordsPage = () => {
           </button>
         </div>
       </div>
-
+      <br />
+      <br />
       {/* History Section */}
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-semibold mb-4">Check History</h2>
+        
 
         {/* Date Filter */}
-        <div className="mb-4 flex gap-4">
+        <div className="mb-4 flex gap-8">
           <input
             type="date"
             value={selectedDate}
@@ -298,8 +304,10 @@ const CheckRecordsPage = () => {
           />
           <button
             onClick={handleDateFilter}
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            style={{margin:"0 10px"}}
+            className=" bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
+            
             Filter by Date
           </button>
           <button
@@ -307,10 +315,12 @@ const CheckRecordsPage = () => {
               setSelectedDate("");
               loadCheckRecords();
             }}
+            style={{margin:"0 10px"}}
             className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             Show All
           </button>
+          <button onClick={downloadCheckExcel} style={{margin:"0 10px"}}>Download Check Records</button>
         </div>
 
         {/* History Table */}

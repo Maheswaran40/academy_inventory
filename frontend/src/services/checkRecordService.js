@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL;
 
 const checkRecordService = {
   // Create new check record
   createCheckRecord: async (recordData) => {
     try {
       const response = await axios.post(`${API_URL}/checkrecords`, recordData);
-      console.log("response",response);
-      
+
       return response.data;
     } catch (error) {
       console.error('Error creating check record:', error);
@@ -20,6 +19,7 @@ const checkRecordService = {
   getAllCheckRecords: async () => {
     try {
       const response = await axios.get(`${API_URL}/checkrecords`);
+      
       return response.data;
     } catch (error) {
       console.error('Error fetching check records:', error);

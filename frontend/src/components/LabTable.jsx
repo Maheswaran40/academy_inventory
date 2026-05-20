@@ -19,9 +19,13 @@ const LabTable = ({ onEdit }) => {
       alert('Error deleting: ' + result.error);
     }
   };
+  const downloadLabExcel = () => {
+  window.open(import.meta.env.VITE_EXCEL_LAB_API);
+};
 
   return (
     <div>
+      <button onClick={downloadLabExcel}>Download Lab Excel</button>
       <div className="search-bar">
         <input
           type="text"

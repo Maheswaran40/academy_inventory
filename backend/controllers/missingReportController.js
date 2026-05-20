@@ -1,6 +1,7 @@
 const CheckRecord = require('../models/CheckRecord');
 const StaffDevice = require('../models/StaffDevice');
 const LabDevice = require('../models/LabDevice');
+const ExcelJS = require('exceljs');
 
 // Get all missing items with details
 exports.getMissingItems = async (req, res) => {
@@ -147,3 +148,6 @@ exports.getMissingItemsSummary = async (req, res) => {
     });
   }
 };
+
+
+

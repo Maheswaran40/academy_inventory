@@ -5,7 +5,6 @@ import InventoryContext from '../context/useInventory';
 const Dashboard = () => {
   const { staffDevices, labDevices } = useContext(InventoryContext);
 
-  console.log("staffDevices",staffDevices)
   // Calculate totals
   const totalStaff = staffDevices.length;
   

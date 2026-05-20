@@ -1,6 +1,6 @@
 // backend/controllers/staffController.js
 const StaffDevice = require('../models/StaffDevice');
-
+const ExcelJS = require('exceljs');
 // Get all staff devices
 exports.getAllStaff = async (req, res) => {
   try {
@@ -60,6 +60,47 @@ exports.deleteStaff = async (req, res) => {
       return res.status(404).json({ message: 'Staff device not found' });
     }
     res.status(200).json({ message: 'Staff device deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+exports.exportStaffExcel = async (req, res) => {
+  try {
+    const records = await StaffDevice.find();
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Inventory');
+
+    worksheet.columns = [
+      { header: 'Staff Name', key: 'staffName', width: 20 },
+      { header: 'Department Role', key: 'departmentRole', width: 20 },
+      { header: 'Laptop', key: 'laptop', width: 15 },
+      { header: 'Mouse', key: 'mouse', width: 15 },
+      { header: 'Desktop', key: 'systemDesktop', width: 15 },
+      { header: 'Charger', key: 'charger', width: 15 },
+      { header: 'Remarks', key: 'remarks', width: 20 },
+    ];
+
+    records.forEach(record => {
+      worksheet.addRow(record.toObject());
+    });
+
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=inventory.xlsx'
+    );
+
+    await workbook.xlsx.write(res);
+    res.end();
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

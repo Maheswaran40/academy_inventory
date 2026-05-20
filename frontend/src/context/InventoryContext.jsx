@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import InventoryContext from './useInventory';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = import.meta.env.VITE_API_URL;
 
 function InventoryProvider({ children }) {
   const [staffDevices, setStaffDevices] = useState([]);
@@ -13,8 +13,7 @@ function InventoryProvider({ children }) {
   // Fetch staff devices
   const fetchStaffDevices = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/staff`);
-      console.log("response",response)
+      const response = await axios.get(import.meta.env.VITE_GET_STAFF);
       setStaffDevices(response.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Error fetching staff devices');
