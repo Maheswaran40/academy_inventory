@@ -20,13 +20,14 @@ body {
 .navbar {
   background-color: #ed1c7b;
   color: white;
-  padding: 1rem 2rem;
+  padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
   width: fit-content;
+  border-bottom:4px solid white ;
 }
 
 .navbar h1 {
@@ -36,6 +37,8 @@ body {
 .nav-links {
   display: flex;
   gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
 }
 
 .nav-links a {
@@ -47,7 +50,7 @@ body {
 }
 
 .nav-links a:hover {
-  background-color: #34495e;
+  background-color: #158fce;
 }
 
 /* Forms */
@@ -166,7 +169,7 @@ th {
 }
 
 tr:hover {
-  background-color: #f8f9fa;
+  background-color: #fed5fa;
 }
 
 .action-buttons {
@@ -221,7 +224,7 @@ tr:hover {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (min-width:426px) and (max-width: 768px) {
   .navbar {
     flex-direction: column;
     text-align: center;
@@ -234,5 +237,11 @@ tr:hover {
   
   .form-row {
     flex-direction: column;
+  }
+}
+
+@media (max-width:426px) {
+  .nav-links{
+    grid-template-columns: 1fr 1fr;
   }
 }
