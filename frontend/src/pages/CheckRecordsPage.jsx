@@ -20,7 +20,7 @@ const CheckRecordsPage = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [checkedBy, setCheckedBy] = useState("");
   const [saving, setSaving] = useState(false);
-
+const [focus, setFocus] = useState(false);
   // Fetch existing devices
   useEffect(() => {
     fetchDevices();
@@ -162,19 +162,21 @@ const CheckRecordsPage = () => {
       <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
         {/* <h2 className="text-2xl font-semibold mb-4">New Weekly Check</h2> */}
         <br />
-        <div className="mb-4">
+        <div className="mb-4" style={{display:"flex"}}>
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Checked By:
           </label>
-          <form className="input-group w-50 bg-red-100">
+          <form className="input-group w-50 bg-red-100" >
             <input
               type="text"
               value={checkedBy}
               onChange={(e) => setCheckedBy(e.target.value)}
               placeholder="Enter your name"
               required
-              className="rounded-full"
-              style={{ width: "200px", height: "30px" }}
+              className="rounded-full "
+              onFocus={()=> setFocus(true)}
+              onBlur={() => setFocus(false)}
+              style={{ width: "200px", height: "30px" ,marginLeft:"10px",boxShadow:"2px 2px 0 black",border:focus ? "0px" : "1px solid black"}}
             />
           </form>
         </div>
@@ -290,8 +292,8 @@ const CheckRecordsPage = () => {
       <br />
       <br />
       {/* History Section */}
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-semibold mb-4">Check History</h2>
+      <div className="bg-white rounded-lg shadow-lg p-6" >
+        <h2 style={{marginBottom:"25px"}} className="text-2xl font-semibold mb-4">Check History</h2>
         
 
         {/* Date Filter */}
@@ -327,7 +329,7 @@ const CheckRecordsPage = () => {
         {loading ? (
           <div className="text-center py-4">Loading...</div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto " style={{marginTop:"15px"}}>
             <table className="min-w-full bg-white border border-gray-300">
               <thead>
                 <tr className="bg-gray-100">
