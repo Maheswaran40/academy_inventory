@@ -1,8 +1,9 @@
 // frontend/src/components/Navbar.js
+import logo from "../images/ilife.png"
 const Navbar = ({ setCurrentPage, currentPage }) => {
   return (
     <nav className="navbar">
-      <h1>📋 Academy Inventory Checklist</h1>
+      <h1 style={{display:"flex",alignItems:"center"}}> <img src={logo} style={{borderRadius:"20px",marginRight:"20px"}} alt="" height="50px"/> Ilife Academy Inventory Checklist</h1>
       <div className="nav-links">
         <a 
           href="#" 
